@@ -24,7 +24,7 @@ let createCalDiv = function(hour) {
 
 let setCalendar = function() {
     let date = moment(today, "L").set("hour, " + dayStart);
-    console.log(date);
+    //console.log(date);
     for (let i = 0; i < 10; i++) {
         createCalDiv(i);
     }
@@ -72,14 +72,14 @@ $(".container").on("click", ".saveBtn", function() {
   });
 
 let updateTimeBlock = function() {
-    console.log(this);
+    //console.log(this);
     let time = $(this).closest(".row").attr("data-hourBlock");
     //console.log(time);
     //console.log(moment(time, "h a").format("M-D-YY LTS"));
     $(this).removeClass("past present future");
 
     let timeDiff = (moment().diff(moment(time, "h a"), "minutes"));
-    console.log(timeDiff);
+    //console.log(timeDiff);
 
     if (timeDiff > 60) {
         $(this).siblings().addClass("past");
@@ -94,7 +94,7 @@ let updateTimeBlock = function() {
 
 let timeOutInterval = setInterval(function(){
     $(".time-stamp").each(updateTimeBlock); 
-}, (1000*5))
+}, (1000*60*5)) //updates every 5 minutes
 
 setCalendar();
 $(".time-stamp").each(updateTimeBlock);
